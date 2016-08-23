@@ -7,7 +7,7 @@ import Board from './board';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {board: new GameElements.Board(20, 40)};
+    this.state = {board: new GameElements.Board(20, 2)};
     this.updateGame = this.updateGame.bind(this);
   }
 
@@ -18,14 +18,12 @@ class Game extends React.Component {
       tile.explore();
     }
 
-    this.setState({board: this.state.board});
-
-    this.detectGameOver();
+    this.setState({board: this.state.board}, this.detectGameOver);
   }
 
   detectGameOver(){
     if(this.state.board.lost()){
-      alert("You lose!");
+      alert("You lose");
       this.setState({board: new GameElements.Board(20, 30)});
     } else if (this.state.board.won()){
       alert("You win!");

@@ -66,10 +66,10 @@ class TileComp extends React.Component {
   statusToString(){
     if(this.props.tile.flagged){
       return "⚑";
+    } else if (this.props.tile.explored && this.props.tile.bombed){
+      return "💣";
     } else if (this.props.tile.explored && this.props.tile.adjacentBombCount() > 0){
       return this.props.tile.adjacentBombCount();
-    } else if (this.props.tile.explored && this.props.tile.bombed){
-      return "B";
     } else{
       return " ";
     }

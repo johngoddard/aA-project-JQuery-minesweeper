@@ -21479,7 +21479,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Game).call(this, props));
 	
-	    _this.state = { board: new _game_logic2.default.Board(20, 40) };
+	    _this.state = { board: new _game_logic2.default.Board(20, 2) };
 	    _this.updateGame = _this.updateGame.bind(_this);
 	    return _this;
 	  }
@@ -21493,15 +21493,13 @@
 	        tile.explore();
 	      }
 	
-	      this.setState({ board: this.state.board });
-	
-	      this.detectGameOver();
+	      this.setState({ board: this.state.board }, this.detectGameOver);
 	    }
 	  }, {
 	    key: 'detectGameOver',
 	    value: function detectGameOver() {
 	      if (this.state.board.lost()) {
-	        alert("You lose!");
+	        alert("You lose");
 	        this.setState({ board: new _game_logic2.default.Board(20, 30) });
 	      } else if (this.state.board.won()) {
 	        alert("You win!");
@@ -21844,10 +21842,10 @@
 	    value: function statusToString() {
 	      if (this.props.tile.flagged) {
 	        return "⚑";
+	      } else if (this.props.tile.explored && this.props.tile.bombed) {
+	        return "💣";
 	      } else if (this.props.tile.explored && this.props.tile.adjacentBombCount() > 0) {
 	        return this.props.tile.adjacentBombCount();
-	      } else if (this.props.tile.explored && this.props.tile.bombed) {
-	        return "B";
 	      } else {
 	        return " ";
 	      }

@@ -21775,6 +21775,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(TileComp).call(this, props));
 	
 	    _this.handleClick = _this.handleClick.bind(_this);
+	    _this.addColorClass = _this.addColorClass.bind(_this);
 	    return _this;
 	  }
 	
@@ -21811,9 +21812,32 @@
 	        classes.push("bombed");
 	      } else if (this.props.tile.explored) {
 	        classes.push("explored");
+	        if (this.props.tile.adjacentBombCount() > 0) {
+	          classes.push(this.addColorClass(this.props.tile.adjacentBombCount()));
+	        }
 	      }
-	
 	      return classes.join(" ");
+	    }
+	  }, {
+	    key: 'addColorClass',
+	    value: function addColorClass(int) {
+	      switch (int) {
+	        case 1:
+	          return "blue";
+	        case 2:
+	          return "green";
+	        case 3:
+	          return "red";
+	        case 4:
+	          return "dark-blue";
+	        case 5:
+	          return "maroon";
+	        case 6:
+	          return "teal";
+	        default:
+	          return "black";
+	
+	      }
 	    }
 	  }, {
 	    key: 'statusToString',

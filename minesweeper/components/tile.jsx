@@ -5,6 +5,7 @@ class TileComp extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.addColorClass = this.addColorClass.bind(this);
   }
 
   render() {
@@ -33,10 +34,34 @@ class TileComp extends React.Component {
         classes.push("bombed");
     } else if(this.props.tile.explored){
       classes.push("explored");
+        if (this.props.tile.adjacentBombCount() > 0) {
+            classes.push(this.addColorClass(this.props.tile.adjacentBombCount()));
+        }
     }
-
     return classes.join(" ");
   }
+
+
+  addColorClass(int) {
+    switch (int) {
+      case 1:
+        return ("blue");
+      case 2:
+        return ("green");
+      case 3:
+        return ("red");
+      case 4:
+        return ("dark-blue");
+      case 5:
+        return ("maroon");
+      case 6:
+        return ("teal");
+      default: return("black");
+
+    }
+  }
+
+
 
   statusToString(){
     if(this.props.tile.flagged){

@@ -21479,7 +21479,7 @@
 	
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Game).call(this, props));
 	
-	    _this.state = { board: new _game_logic2.default.Board(20, 2) };
+	    _this.state = { board: new _game_logic2.default.Board(20, 30) };
 	    _this.updateGame = _this.updateGame.bind(_this);
 	    return _this;
 	  }
